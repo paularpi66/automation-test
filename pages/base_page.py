@@ -12,7 +12,7 @@ class BasePage:
     def wait_for_page_to_load(self, new_url, timeout=10):
         WebDriverWait(self.driver, timeout).until(EC.url_contains(new_url))
 
-    def find(self, by, value, timeout=10):
+    def find(self, by, value, timeout=20):
         return WebDriverWait(self.driver, timeout).until(
             EC.presence_of_element_located((by, value))
         )
