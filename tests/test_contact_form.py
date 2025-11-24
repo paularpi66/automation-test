@@ -1,10 +1,10 @@
 import time
 from pages.contact_page import ContactPage
-from utils.config import BASE_URL
+from utils.config import BASE_URL, CONTACT_URL
 
 def test_contact_form_validation_and_submission(driver):
     contact = ContactPage(driver)
-    contact.go(BASE_URL)
+    contact.go(CONTACT_URL)
     print("--> contact page loaded")
 
     contact.submit_empty()

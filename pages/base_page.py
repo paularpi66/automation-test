@@ -1,5 +1,6 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import Select
 
 class BasePage:
     def __init__(self, driver):
@@ -8,7 +9,7 @@ class BasePage:
     def visit(self, url):
         self.driver.get(url)
     
-    def wait_for_page_to_load(self, new_url,timeout=10):
+    def wait_for_page_to_load(self, new_url, timeout=10):
         WebDriverWait(self.driver, timeout).until(EC.url_contains(new_url))
 
     def find(self, by, value, timeout=10):
@@ -26,6 +27,11 @@ class BasePage:
         el = self.find(by, value, timeout)
         el.clear()
         el.send_keys(text)
+
+    def select(self, by, value, opt, timeout=10):
+        el = self.find(by, value, timeout)
+        select_object = Select(el)
+        select_object.select_by_visible_text(opt)
 
     def text(self, by, value, timeout=10):
         el = self.find(by, value, timeout)
