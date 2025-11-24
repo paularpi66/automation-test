@@ -1,9 +1,11 @@
+from tkinter import LAST
 from selenium.webdriver.common.by import By
 from .base_page import BasePage
 
 class ContactPage(BasePage):
     CONTACT = (By.CSS_SELECTOR, "a.nav-link")
-    NAME = (By.ID, 'name')
+    FIRST_NAME = (By.ID, 'first_name')
+    LAST_NAME = (By.ID, 'last_name')
     EMAIL = (By.ID, 'email')
     MESSAGE = (By.ID, 'message')
     SUBMIT = (By.CSS_SELECTOR, "input.btnSubmit")
@@ -25,8 +27,9 @@ class ContactPage(BasePage):
         # self.click(*self.SUBMIT)
         self.find(*self.SUBMIT).click()
 
-    def fill_form(self, name, email, message):
-        self.type(*self.NAME, text=name)
+    def fill_form(self, first_name, last_name, email, message):
+        self.type(*self.FIRST_NAME, text=first_name)
+        self.type(*self.LAST_NAME, text=last_name)
         self.type(*self.EMAIL, text=email)
         self.type(*self.MESSAGE, text=message)
         self.click(*self.SUBMIT)
